@@ -1,0 +1,123 @@
+html {
+    font-family: "Helvetica", arial, sans-serif;
+    font-weight: lighter;
+    background-color: #272727; 
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+form {
+    margin: 20px;
+    margin-top: 120px;
+}
+
+form input {
+    height: 40px;
+    width: 100%;
+    padding: 5px 20px;
+    line-height: 30px;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    outline: none;
+    border: none;
+    color: white;
+    border: 1px solid #555;
+    background: rgba(65, 65, 65, .9);
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+}
+
+form input:first-child {
+    margin-bottom: 10px;
+}
+
+form input::-webkit-input-placeholder {
+    padding: 0;
+    color: #EEE;
+}
+
+form button {
+    width: 100%;
+    margin-top: 20px;
+    background: #5AAF66;
+    border: none;
+    height: 40px;
+    line-height: 40px;
+    color: white;
+    -webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+border-radius: 2px;
+    letter-spacing: .2em;
+    cursor: pointer;
+}
+
+@-webkit-keyframes spinner-animation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  8.33% {
+    -webkit-transform: rotate(30deg);
+  }
+  16.67%  {
+    -webkit-transform: rotate(60deg);
+  }
+  25%  {
+    -webkit-transform: rotate(90deg);
+  }
+  33.33%  {
+    -webkit-transform: rotate(120deg);
+  }
+  41.67%  {
+    -webkit-transform: rotate(150deg);
+  }
+  50%  {
+    -webkit-transform: rotate(180deg);
+  }
+  58.33%  {
+    -webkit-transform: rotate(210deg);
+  }
+  66.67%  {
+    -webkit-transform: rotate(240deg);
+  }
+  75%  {
+    -webkit-transform: rotate(270deg);
+  }
+  83.33%  {
+    -webkit-transform: rotate(300deg);
+  }
+  91.67%  {
+    -webkit-transform: rotate(330deg);
+  }
+}
+
+.loading {
+    background-image: url('/img/loading.svg');
+    width: 30px;
+    height: 30px;
+    background-size: 100%;
+    -webkit-filter: invert(100%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    -webkit-animation: spinner-animation 1s step-end infinite;
+}
+
+.hide {
+    display: none;
+}
+
+.drag {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    -webkit-app-region: drag;
+}

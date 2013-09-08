@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/font.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.v2.css" />
+    <script type="text/javascript" src="/libs/lastfm.api.md5.js"></script>
+    <script type="text/javascript" src="/libs/underscore.js"></script>
+    <script type="text/javascript" src="/libs/windows.special.js"></script>
+    <script data-main="/js/player" type="text/javascript" src="/libs/require.min.js"></script> 
+</head>
+<body>
+    <div class="close-btn" id="js-close"></div>
+    <audio id="js-player"></audio>
+    <div id="js-card" class="container">
+        <div class="cover card">
+            <div class="face front">
+                <div id="js-cover" class="cover-wrapper">
+                </div>
+                <div class="song-meta">
+                    <span id="js-songName" class="song-name"></span>
+                    <span id="js-leftTime" class="r song-lefttime"></span>
+                    <span id="js-artist" class="artist"></span>
+                </div>
+            </div>
+            <div class="face back setting" id="js-share-panel">
+                <div class="setting-title">Share</div>
+                <div class="setting-body">
+                    <div class="setting-line setting-line-textarea">
+                        <textarea id="js-share-content" placeholder="say something.."></textarea>
+                    </div>
+                    <div class="setting-line setting-line-action">
+                        <button class="setting-btn setting-btn-submit" id="js-share-submit">Share</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="setting js-panel" id="js-setting-panel">
+        <div class="gray-bg"></div>
+        <div class="setting-title">Settings</div>
+        <div id="js-setting-main" class="setting-body">
+            <label class="center-label">GENERAL</label>
+            <div class="setting-line">
+                <div class="setting-meta">
+                    <div class="setting-name">码率设置</div>
+                </div>
+                <div class="setting-option">
+                    <select id="js-setting-kbps" class="clickable">
+                        <option name="64" id="js-kbps-64" data-kbps="64">64</option>
+                        <option name="128" id="js-kbps-128" data-kbps="128">128</option>
+                        <option name="192" id="js-kbps-192" data-kbps="192">192</option>
+                    </select>
+                </div>
+            </div>
+            <div id="js-setting-login-line" class="setting-line clickable">
+                <div class="setting-meta">
+                    <div class="setting-name">登录设置</div>
+                </div>
+                <div id="js-logined-username" class="setting-value logined-username"></div>
+            </div>
+            <div class="setting-line">
+                <div class="setting-meta">
+                    <div class="setting-name">桌面提醒</div>
+                </div>
+                <div id="js-notification-setting" class="setting-switch clickable">
+                </div>
+            </div>
+            <div id="js-setting-lastfm-line" class="setting-line clickable">
+                <div class="setting-meta">
+                    <div class="setting-name">Last.fm 同步</div>
+                </div>
+                <div id="js-setting-lastfm-value" class="setting-value">未绑定</div>
+            </div>
+            <label class="center-label">ABOUT</label>
+            <div class="setting-line">
+                <div class="setting-meta">
+                    <div class="setting-name">かなめ 0.1.0 </div>
+                </div>
+            </div>
+            <div class="setting-line"></div>
+        </div>
+        <div id="js-setting-login-panel" class="setting-body js-subsetting-panel setting-subsetting">
+            <label class="center-label">登录设置</label>
+            <div class="setting-line">
+                <div class="setting-meta">
+                    <div class="setting-name">用户名</div>
+                </div>
+                <div id="js-setting-login-username" class="setting-value logined-username"></div>
+            </div>
+            <div class="setting-line">
+                <div class="setting-meta">
+                    <div class="setting-name">喜欢</div>
+                </div>
+                <div id="js-setting-login-like" class="setting-value"></div>
+            </div>
+            <div class="setting-line">
+                <div class="setting-meta">
+                    <div class="setting-name">听过</div>
+                </div>
+                <div id="js-setting-login-listened" class="setting-value"></div>
+            </div>
+            <div class="setting-line">
+                <div class="setting-meta">
+                    <div class="setting-name">不再播放</div>
+                </div>
+                <div id="js-setting-login-banned" class="setting-value"></div>
+            </div>
+            <div class="setting-line">
+                <div class="setting-meta">
+                    <div class="setting-name">是否 Pro 用户</div>
+                </div>
+                <div id="js-setting-login-ispro" class="setting-value">否</div>
+            </div>
+            <div class="setting-line">
+                <div class="setting-meta">
+                    <div class="setting-name">Pro 到期时间</div>
+                </div>
+                <div id="js-setting-login-prolength" class="setting-value"></div>
+            </div>
+            <div class="setting-line clickable" id="js-setting-login-logout">
+                <div class="setting-meta">
+                    <div class="setting-name">注销</div>
+                </div>
+            </div>
+            <div class="setting-line js-setting-panel-cancel clickable">
+                <div class="setting-meta">
+                    <div class="setting-name">返回</div>
+                </div>
+            </div>
+            <div class="setting-line"></div>
+        </div>
+        <div id="js-setting-lastfm-panel" class="setting-body js-subsetting-panel setting-subsetting">
+            <label class="center-label">Last.fm 设置</label>
+            <div class="setting-line clickable" id="js-setting-lastfm-revoke">
+                <div class="setting-meta">
+                    <div class="setting-name">解除绑定</div>
+                </div>
+            </div>
+            <div class="setting-line clickable js-setting-panel-cancel">
+                <div class="setting-meta">
+                    <div class="setting-name">返回</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="setting js-panel" id="js-channel-panel">
+        <div class="gray-bg"></div>
+        <div class="setting-title">Channels</div>
+        <div class="setting-body setting-channel-body">
+            <ul class="channel-list" id="js-channel-list">
+            </ul>
+        </div>
+    </div>
+    <div class="play-control">
+        <button id="js-play" class="pause-button"></button>
+        <button id="js-love" class="unlike-button"></button>
+        <button id="js-trash" class="trash-button"></button>
+        <button id="js-skip" class="next-button"></button>
+        <button id="js-setting" class="setting-button"></button>
+        <button id="js-share" class="share-button"></button>
+        <button id="js-channel" class="channel-button"></button>
+    </div>
+    <div id="js-toast" class="toast"></div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+    "name" : "豆瓣电台", 
+    "description" : "Packaged App 版本的豆瓣电台", 
+    "version" : "0.1.0", 
+    "minimum_chrome_version": "28",
+    "app" : {
+        "background" : {
+            "scripts" : ["background.js"]
+        }
+    }, 
+    "permissions" : [
+        "http://*.douban.com/*", 
+        "https://*.douban.com/*", 
+        "http://ws.audioscrobbler.com/*", 
+        "https://ws.audioscrobbler.com/*", 
+        "https://_.zr.is/*", 
+        "app.window",
+        "notifications", 
+        "storage"
+    ], 
+
+    "icons" : {
+        "512" : "icons/512.png", 
+        "256" : "icons/256.png", 
+        "128" : "icons/128.png"
+    }
+}

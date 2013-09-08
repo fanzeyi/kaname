@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Play</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page 1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Play" fill="#FFFFFF">
+            <path d="M181.555456,142.739398 C179.46877,141.317232 176.67986,140.5625 173.842802,140.5625 C172.440171,140.5625 171.023914,140.747623 169.674881,141.128395 C165.600528,142.278139 162.94425,144.986879 162.94425,147.992188 L162.94425,170.28125 L162.94425,229.71875 L162.94425,252.007812 C162.94425,255.013121 165.600528,257.721861 169.674881,258.871605 C171.023914,259.252377 172.440171,259.4375 173.842802,259.4375 C176.682585,259.4375 179.46877,258.682768 181.555456,257.26184 L257.861676,205.254027 C262.120441,202.352115 262.120441,197.647266 257.861676,194.747211 L181.555456,142.739398 Z M181.555456,142.739398" id="Shape"></path>
+        </g>
+    </g>
+</svg>

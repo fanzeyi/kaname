@@ -1,0 +1,13 @@
+{
+    "program": {
+        "x86-32" : {
+            "url" : "encrypt_x86_32.nexe" 
+        }, 
+        "x86-64" : {
+            "url" : "encrypt_x86_64.nexe"
+        }, 
+        "arm"    : {
+            "url" : "encrypt_arm.nexe"
+        }
+    }
+}

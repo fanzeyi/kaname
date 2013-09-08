@@ -1,0 +1,36 @@
+@font-face {
+ font-family: "Benton-Sans";
+ src: url("/woff/benton-sans-bold.woff") format("woff");
+ font-style: normal;
+ font-weight: bold;
+}
+@font-face {
+ font-family: "Benton-Sans";
+ src: url("/woff/benton-sans.woff") format("woff");
+ font-style: normal;
+ font-weight: normal;
+}
+@font-face {
+ font-family: "Benton-Sans";
+ src: url("/woff/benton-sans-italic.woff") format("woff");
+ font-style: italic;
+ font-weight: normal;
+}
+@font-face {
+ font-family: "Benton-Sans Light";
+ src: url("/woff/benton-sans-light.woff") format("woff");
+ font-style: normal;
+ font-weight: normal;
+}
+@font-face {
+ font-family: "Benton-Sans Light";
+ src: url("/woff/benton-sans-light-italic.woff") format("woff");
+ font-style: italic;
+ font-weight: normal;
+}
+@font-face {
+ font-family: "Benton-Sans Medium";
+ src: url("/woff/benton-sans-medium.woff") format("woff");
+ font-style: normal;
+ font-weight: normal;
+}

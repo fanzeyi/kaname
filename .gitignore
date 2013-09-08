@@ -3,5 +3,8 @@ config.json
 dist/
 coffee-dist/
 coffee/player-fm*.coffee
-*.nexe
+plugins/*.c
+plugins/*.h
+plugins/Makefile
+coffee/douban-fm-login.coffee
 *.o

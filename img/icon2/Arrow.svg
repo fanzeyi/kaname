@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>Arrow</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page 1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Arrow" fill="#DEDEDE">
+            <path d="M176.889254,251.476541 C182.432489,257.019776 191.415648,257.023977 196.963519,251.476106 L237.110312,211.329314 C239.949144,208.490481 241.334571,204.748759 241.266083,201.028763 C241.350178,197.29097 239.965513,193.525888 237.110312,190.670686 L196.963519,150.523894 C191.420044,144.980418 182.433708,144.979005 176.889254,150.523459 C171.346019,156.066695 171.341817,165.049853 176.889688,170.597724 L207.291964,201 L176.889688,231.402276 C171.346213,236.945751 171.3448,245.932087 176.889254,251.476541 Z M201,296 C148.532946,296 106,253.467054 106,201 C106,148.532946 148.532946,106 201,106 C253.467054,106 296,148.532946 296,201 C296,253.467054 253.467054,296 201,296 Z M201,296" id="Oval 1"></path>
+        </g>
+    </g>
+</svg>
