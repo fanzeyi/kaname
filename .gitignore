@@ -1,0 +1,7 @@
+node_modules/
+config.json
+dist/
+coffee-dist/
+coffee/player-fm*.coffee
+*.nexe
+*.o
