@@ -236,6 +236,12 @@ define ['jquery',
             @like_button.removeClass()
             @like_button.addClass("unlike-button")
             @playlist.likeSong @current
+
+            if @setting.config.lastfm
+                @setting.lastfm.love
+                    track: song.title
+                    artist: song.artist
+                    sk: @setting.config.lastfm.key
     
         unlikeSong: ->
             self = this
@@ -245,6 +251,12 @@ define ['jquery',
             @like_button.removeClass()
             @like_button.addClass("like-button")
             @playlist.likeSong @current
+
+            if @setting.config.lastfm
+                @setting.lastfm.unlove
+                    track: song.title
+                    artist: song.artist
+                    sk: @setting.config.lastfm.key
     
         blockSong: ->
             self = this
