@@ -44,6 +44,12 @@ define ["jquery"], ($) ->
                 authToken: md5(params.username + md5(params.password))
             , callback, "POST"
 
+        ban: (params, callback)->
+            @_api "track.ban",
+                track: params.track
+                artist: params.artist
+            , callback, "POST"
+
         love: (params, callback)->
             @_api "track.love",
                 track: params.track
