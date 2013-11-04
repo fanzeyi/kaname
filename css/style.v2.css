@@ -70,7 +70,7 @@ body {
     height: 40px;
     background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f6f6f6), to(#efefef));
     background-image: -webkit-linear-gradient(top, #f6f6f6, #efefef);
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     z-index: 500;
