@@ -266,6 +266,12 @@ define ['jquery',
             @playlist.blockSong @current, (playlist) ->
                 playlist.getSong undefined, (song) ->
                     self.playSong song
+
+            if @setting.config.lastfm
+                @setting.lastfm.ban
+                    track: song.title
+                    artist: song.artist
+                    sk: @setting.config.lastfm.key
     
         pause: ->
             @play_button.removeClass "pause-button"
