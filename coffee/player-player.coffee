@@ -150,8 +150,18 @@ define ['jquery',
                 .fail ->
                     toast = new Toast("分享失败")
                     toast.show()
-    
+
                 self.card.removeClass "show-back"
+
+            chrome.notifications.onButtonClicked.addListener (notID, ibtn) ->
+                switch ibtn
+                    when 0 then self.skipSong true
+                    when 1 
+                        song = JSON.parse(notID)
+                        if self.current.ssid == song.ssid
+                            self.blockSong true
+                        else
+                            self.playlist.blockSong song, (playlist) ->
     
         resetPanel: ->
             @panel_down = false
@@ -190,7 +200,7 @@ define ['jquery',
             @like_button.removeClass()
     
             if song.like
-                @like_button.addClass("unlike-button")
+                @like_button.addClass("dislike-button")
             else
                 @like_button.addClass("like-button")
     
@@ -216,17 +226,17 @@ define ['jquery',
     
         likingSong: ->
             if @current.like
-                @unlikeSong()
+                @dislikeSong()
             else
                 @likeSong()
     
-        skipSong: ->
+        skipSong: (notify = false)->
             self = this
     
             @current.currentTime = @_.currentTime
             @playlist.skipPlaylist @current, (playlist) ->
                 playlist.getSong self.current, (song) ->
-                    self.playSong song, false
+                    self.playSong song, notify
     
         likeSong: ->
             self = this
@@ -234,7 +244,7 @@ define ['jquery',
             @current.like = 1
             @current.currentTime = @_.currentTime
             @like_button.removeClass()
-            @like_button.addClass("unlike-button")
+            @like_button.addClass("dislike-button")
             @playlist.likeSong @current
 
             if @setting.config.lastfm
@@ -243,7 +253,7 @@ define ['jquery',
                     artist: song.artist
                     sk: @setting.config.lastfm.key
     
-        unlikeSong: ->
+        dislikeSong: ->
             self = this
     
             @current.like = 0
@@ -258,14 +268,14 @@ define ['jquery',
                     artist: song.artist
                     sk: @setting.config.lastfm.key
     
-        blockSong: ->
+        blockSong: (notify = false)->
             self = this
     
             @current.currentTime = @_.currentTime
             @pause()
             @playlist.blockSong @current, (playlist) ->
                 playlist.getSong undefined, (song) ->
-                    self.playSong song
+                    self.playSong song, notify
     
         pause: ->
             @play_button.removeClass "pause-button"
@@ -276,7 +286,20 @@ define ['jquery',
             @play_button.removeClass "play-button"
             @play_button.addClass "pause-button"
             @_.play()
-    
+
+        sendNotification: (song, cover)->
+            notifications = chrome.notifications.create JSON.stringify(song),
+                type: "basic"
+                title: song.title
+                message: song.artist
+                iconUrl: cover
+                buttons: [
+                    { title: "下一首" },
+                    { title: "不再播放" }
+                ]
+                
+                , (notify) ->
+
         loadCover: (song, notify) ->
             self = this
             xhr = new XMLHttpRequest()
@@ -292,12 +315,7 @@ define ['jquery',
                 self.cover.append img
     
                 if self.setting.config.notification and notify
-                    notification = chrome.notifications.create song.title + " - " + song.artist,
-                        type: "basic"
-                        title: song.title
-                        message: song.artist
-                        iconUrl: window.webkitURL.createObjectURL @response
-                    , (notify) ->
+                    self.sendNotification song, window.webkitURL.createObjectURL(@response)
     
             xhr.send()
     
