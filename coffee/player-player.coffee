@@ -134,7 +134,7 @@ define ['jquery',
             @share_submit_button.bind "click", ->
                 content = self.share_content.val()
 
-                FMShare self.current, content, self.setting.config, self.channel_name, ->
+                FMShare self.current, content, self.setting.config, self.channel_name, self.channel.token.access_token, ->
                     self.share_content.val ""
         
                     toast = new Toast("分享成功")
