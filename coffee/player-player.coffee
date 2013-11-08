@@ -20,7 +20,7 @@ define ['jquery',
             @playlist = new Playlist(@setting)
     
             chrome.storage.sync.get "token", (val) ->
-                self.channel = new FMChannel(val.token.access_token, self.setting)
+                self.channel = new FMChannel(val.token, self.setting)
                 self.channel.loadList (list) ->
                     self.initList list
                     self.single_channel = $(".js-channel")
