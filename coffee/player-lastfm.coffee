@@ -48,6 +48,7 @@ define ["jquery"], ($) ->
             @_api "track.ban",
                 track: params.track
                 artist: params.artist
+                sk: params.sk
             , callback, "POST"
 
         love: (params, callback)->
