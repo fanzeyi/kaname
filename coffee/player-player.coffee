@@ -275,7 +275,17 @@ define ['jquery',
             @pause()
             @playlist.blockSong @current, (playlist) ->
                 playlist.getSong undefined, (song) ->
+<<<<<<< HEAD
                     self.playSong song, notify
+=======
+                    self.playSong song
+
+            if @setting.config.lastfm
+                @setting.lastfm.ban
+                    track: song.title
+                    artist: song.artist
+                    sk: @setting.config.lastfm.key
+>>>>>>> microdog/master
     
         pause: ->
             @play_button.removeClass "pause-button"
