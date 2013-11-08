@@ -2,7 +2,8 @@
 define ['jquery',
         '/coffee-dist/player-playlist.js',
         '/coffee-dist/player-fm-channel.js',
-        '/coffee-dist/player-toast.js'], ($, Playlist, FMChannel, Toast) ->
+        '/coffee-dist/player-fm-share.js',
+        '/coffee-dist/player-toast.js'], ($, Playlist, FMChannel, FMShare, Toast) ->
 
     class Player
         constructor: (@setting)->
@@ -132,25 +133,16 @@ define ['jquery',
     
             @share_submit_button.bind "click", ->
                 content = self.share_content.val()
-    
-                dt =
-                    object_id : self.current.sid
-                    object_kind : "3043"
-                    image : self.current.picture
-                    href : "http://douban.fm/?cid=" + self.setting.config.channel + "&start=" + self.current.sid + "g" + self.current.ssid + "g" + self.setting.config.channel
-                    desc : "(来自かなめ - " + self.channel_name + ")"
-                    name : self.current.title
-                    text : content
-    
-                $.post "https://api.douban.com/v2/fm/share_to_douban", dt, ->
+
+                FMShare self.current, content, self.setting.config, self.channel_name, ->
                     self.share_content.val ""
-    
+        
                     toast = new Toast("分享成功")
                     toast.show()
-                .fail ->
+                , ->
                     toast = new Toast("分享失败")
                     toast.show()
-
+    
                 self.card.removeClass "show-back"
 
             chrome.notifications.onButtonClicked.addListener (notID, ibtn) ->
