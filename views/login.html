@@ -8,14 +8,18 @@
 </head>
 <body>
     <div class="drag"></div>
+    <div class="fm-logo">
+        <img src="/img/fm_logo.png" />
+    </div>
     <form id="js-login-form">
-        <input type="text" id="js-username" name="username" placeholder="EMAIL" />
-        <input type="password" id="js-password" name="password" placeholder="PASSWORD" />
-        <button type="submit">LOGIN</button>
+        <input type="text" id="js-username" name="username" placeholder="用户名 / 邮箱" />
+        <input type="password" id="js-password" name="password" placeholder="密码" />
+        <button type="submit">登 录</button>
     </form>
     <div id="js-loading" class="loading hide"></div>
     <div id="js-nacl">
         <embed name="nacl_module" id="js-encrypt" width="0" height="0" src="/plugins/encrypt.nmf" type="application/x-nacl" />
     </div>
+    <div id="js-toast" class="toast hide"></div>
 </body>
 </html>
