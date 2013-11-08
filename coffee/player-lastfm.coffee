@@ -54,12 +54,14 @@ define ["jquery"], ($) ->
             @_api "track.love",
                 track: params.track
                 artist: params.artist
+                sk: params.sk
             , callback, "POST"
 
         unlove: (params, callback)->
             @_api "track.unlove",
                 track: params.track
                 artist: params.artist
+                sk: params.sk
             , callback, "POST"    
 
         updateNowPlaying: (params, callback)->

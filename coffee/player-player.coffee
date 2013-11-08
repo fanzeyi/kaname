@@ -249,8 +249,8 @@ define ['jquery',
 
             if @setting.config.lastfm
                 @setting.lastfm.love
-                    track: song.title
-                    artist: song.artist
+                    track: @current.title
+                    artist: @current.artist
                     sk: @setting.config.lastfm.key
     
         dislikeSong: ->
@@ -264,8 +264,8 @@ define ['jquery',
 
             if @setting.config.lastfm
                 @setting.lastfm.unlove
-                    track: song.title
-                    artist: song.artist
+                    track: @current.title
+                    artist: @current.artist
                     sk: @setting.config.lastfm.key
     
         blockSong: (notify = false)->
@@ -275,17 +275,14 @@ define ['jquery',
             @pause()
             @playlist.blockSong @current, (playlist) ->
                 playlist.getSong undefined, (song) ->
-<<<<<<< HEAD
                     self.playSong song, notify
-=======
                     self.playSong song
 
             if @setting.config.lastfm
                 @setting.lastfm.ban
-                    track: song.title
-                    artist: song.artist
+                    track: @current.title
+                    artist: @current.artist
                     sk: @setting.config.lastfm.key
->>>>>>> microdog/master
     
         pause: ->
             @play_button.removeClass "pause-button"
