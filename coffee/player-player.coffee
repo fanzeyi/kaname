@@ -1,8 +1,8 @@
 
 define ['jquery',
-        '/coffee-dist/player-playlist.min.js',
-        '/coffee-dist/player-fm-channel.min.js',
-        '/coffee-dist/player-toast.min.js'], ($, Playlist, FMChannel, Toast) ->
+        '/coffee-dist/player-playlist.js',
+        '/coffee-dist/player-fm-channel.js',
+        '/coffee-dist/player-toast.js'], ($, Playlist, FMChannel, Toast) ->
 
     class Player
         constructor: (@setting)->

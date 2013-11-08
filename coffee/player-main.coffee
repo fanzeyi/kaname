@@ -1,8 +1,8 @@
 
 define ['jquery', 'underscore',
         '/coffee-dist/player-player.js',
-        '/coffee-dist/player-setting.min.js',
-        '/coffee-dist/player-keybinding.min.js'], ($, _, Player, Setting, KeyBinding) ->
+        '/coffee-dist/player-setting.js',
+        '/coffee-dist/player-keybinding.js'], ($, _, Player, Setting, KeyBinding) ->
 
     setting = new Setting()
     setting.loadConfig ->

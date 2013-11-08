@@ -1,5 +1,5 @@
 
-define ['/coffee-dist/player-fm-playlist.min.js'], (FMPlaylist) ->
+define ['/coffee-dist/player-fm-playlist.js'], (FMPlaylist) ->
 
     class Playlist
         constructor: (@setting)->
