@@ -293,8 +293,14 @@ define ['jquery',
                 message: song.artist
                 iconUrl: cover
                 buttons: [
-                    { title: "下一首" },
-                    { title: "不再播放" }
+                    {
+                        title: "下一首",
+                        iconUrl: "/img/icon2/Next-notification.png"
+                    },
+                    {
+                        title: "不再播放",
+                        iconUrl: "/img/icon2/Trash-notification.png"
+                    }
                 ]
                 
                 , (notify) ->
