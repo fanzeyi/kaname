@@ -1,7 +1,7 @@
 {
     "name" : "豆瓣电台", 
     "description" : "Packaged App 版本的豆瓣电台", 
-    "version" : "0.2.2", 
+    "version" : "0.2.3", 
     "minimum_chrome_version": "28",
     "app" : {
         "background" : {

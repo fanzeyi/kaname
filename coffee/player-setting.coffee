@@ -1,4 +1,6 @@
-define ['jquery', '/coffee-dist/player-lastfm.js', '/coffee-dist/utils.js'], ($, LastFM, openView) ->
+define ['jquery', 
+        '/coffee-dist/player-lastfm.js', 
+        '/coffee-dist/utils.js'], ($, LastFM, openView) ->
 
     class Setting
     
@@ -33,6 +35,7 @@ define ['jquery', '/coffee-dist/player-lastfm.js', '/coffee-dist/utils.js'], ($,
             self = this
     
             chrome.storage.sync.get "token", (val) ->
+                self.token = val.token
                 self.logined_username.text val.token.douban_user_name
     
             @kbps_setting.bind "change", ->
@@ -43,18 +46,24 @@ define ['jquery', '/coffee-dist/player-lastfm.js', '/coffee-dist/utils.js'], ($,
                 self.main_panel.addClass "side-out"
                 self.login_panel.addClass "side-in"
                 
-                $.getJSON "https://api.douban.com/v2/fm/user_info", (user) ->
-                    self.login_username.text user.name
-                    self.login_like.text user.liked_num + " 首"
-                    self.login_listened.text user.played_num + " 首"
-                    self.login_banned.text user.banned_num + " 首"
-                    if user.pro_status is "S"
-                        self.login_ispro.text "是"
-                    else if user.pro_status is "E"
-                        self.login_ispro.text "已过期"
-                    else
-                        self.login_ispro.text "否"
-                    self.login_prolength.text user.pro_expire_date
+                $.ajax
+                    url: "https://api.douban.com/v2/fm/user_info"
+                    type: "GET"
+                    headers:
+                        Authorization: "Bearer " + self.token.access_token
+                    dataType: "JSON"
+                    success: (user) ->
+                        self.login_username.text user.name
+                        self.login_like.text user.liked_num + " 首"
+                        self.login_listened.text user.played_num + " 首"
+                        self.login_banned.text user.banned_num + " 首"
+                        if user.pro_status is "S"
+                            self.login_ispro.text "是"
+                        else if user.pro_status is "E"
+                            self.login_ispro.text "已过期"
+                        else
+                            self.login_ispro.text "否"
+                        self.login_prolength.text user.pro_expire_date
     
             @lastfm_line.bind "click", ->
                 if not self.config.lastfm
