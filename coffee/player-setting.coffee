@@ -1,7 +1,4 @@
-width = 300
-height = 340
-
-define ['jquery', '/coffee-dist/player-lastfm.js'], ($, LastFM) ->
+define ['jquery', '/coffee-dist/player-lastfm.js', '/coffee-dist/utils.js'], ($, LastFM, openView) ->
 
     class Setting
     
@@ -61,22 +58,7 @@ define ['jquery', '/coffee-dist/player-lastfm.js'], ($, LastFM) ->
     
             @lastfm_line.bind "click", ->
                 if not self.config.lastfm
-                    if navigator.appVersion.indexOf("Win") isnt -1
-                        frame = 'chrome'
-                    else
-                        frame = 'none'
-                    chrome.app.window.create "views/lastfm.html",
-                        id: "lastfm"
-                        bounds:
-                            width: width
-                            height: height
-                        minWidth: width
-                        maxWidth: width
-                        minHeight: height
-                        maxHeight: height
-                        resizable: false
-                        frame: frame
-                    , (win) ->
+                    openView "lastfm", "lastfm.html", (win) ->
                         win.onClosed.addListener ->
                             chrome.storage.sync.get "lastfm", (lastfm) ->
                                 console.log lastfm
@@ -107,22 +89,7 @@ define ['jquery', '/coffee-dist/player-lastfm.js'], ($, LastFM) ->
     
             @login_logout.bind "click", ->
                 chrome.storage.sync.remove "token", ()->
-                    if navigator.appVersion.indexOf("Win") isnt -1
-                        frame = 'chrome'
-                    else
-                        frame = 'none'
-                    chrome.app.window.create "views/login.html",
-                        id: "login"
-                        bounds:
-                            width: width
-                            height: height
-                        minWidth: width
-                        maxWidth: width
-                        minHeight: height
-                        maxHeight: height
-                        resizable: false
-                        frame: frame
-                    , ->
+                    openView "login", "login.html", ->
                         chrome.app.window.current().close()
             
             @panel_cancel.bind "click", ->
