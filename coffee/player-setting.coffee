@@ -1,7 +1,7 @@
 width = 300
 height = 340
 
-define ['jquery', '/coffee-dist/player-lastfm.min.js'], ($, LastFM) ->
+define ['jquery', '/coffee-dist/player-lastfm.js'], ($, LastFM) ->
 
     class Setting
     

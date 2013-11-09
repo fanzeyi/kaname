@@ -10,6 +10,7 @@ rm -rf /tmp/`basename $PACKAGED_PATH`
 cd /tmp
 cp -r $PACKAGED_PATH .
 cd `basename $PACKAGED_PATH`
+find . -name "*.coffee" -exec sed -i "" $SED_PATTERN {} \;
 grunt
 rm -rf *.sketch
 rm package.json

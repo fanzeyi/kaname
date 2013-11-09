@@ -1,5 +1,5 @@
 
-define ['/coffee-dist/player-fm-playlist.min.js'], (FMPlaylist) ->
+define ['/coffee-dist/player-fm-playlist.js'], (FMPlaylist) ->
 
     class Playlist
         constructor: (@setting)->
@@ -15,9 +15,7 @@ define ['/coffee-dist/player-fm-playlist.min.js'], (FMPlaylist) ->
                 return
             
             chrome.storage.sync.get "token", (val) ->
-                debugger
-
-                self.fm = new FMPlaylist val.token.access_token, self.setting
+                self.fm = new FMPlaylist val.token, self.setting
                 
                 if callback?
                     callback self
