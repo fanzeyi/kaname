@@ -24,6 +24,7 @@ define ['jquery',
             @login_logout = $("#js-setting-login-logout")
     
             @notification_setting = $("#js-notification-setting")
+            @album_douban_music_setting = $("#js-album-douban-music")
     
             @lastfm = new LastFM '3a79de48b56292f6a6daa967cdec2ed2', '75428b69cec448a9cd4c9b504e719941'
     
@@ -116,6 +117,18 @@ define ['jquery',
                     self.notification_setting.addClass "switch-off"
                 
                 self.saveConfig()
+
+            @album_douban_music_setting.bind "click", ->
+                if not self.config.albumdoubanmusic
+                    self.config.albumdoubanmusic = true
+                    self.album_douban_music_setting.removeClass "switch-off"
+                    self.album_douban_music_setting.addClass "switch-on"
+                else
+                    self.config.albumdoubanmusic = false
+                    self.album_douban_music_setting.removeClass "switch-on"
+                    self.album_douban_music_setting.addClass "switch-off"
+                
+                self.saveConfig()
     
         loadConfig: (callback, env)->
             self = this
@@ -139,6 +152,7 @@ define ['jquery',
             channel: "0"
             notification: false
             lastfm: ""
+            albumdoubanmusic: true
     
         renderConfig: (config)->
             @kbps_setting.val config.kbps
@@ -147,6 +161,11 @@ define ['jquery',
                 @notification_setting.addClass "switch-on"
             else
                 @notification_setting.addClass "switch-off"
+
+            if config.albumdoubanmusic
+                @album_douban_music_setting.addClass "switch-on"
+            else
+                @album_douban_music_setting.addClass "switch-off"
     
             if config.lastfm?
                 @lastfm_value.text config.lastfm.name

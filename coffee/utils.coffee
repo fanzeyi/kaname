@@ -29,7 +29,6 @@ openView = (viewId, viewLoc, callback) ->
     app = chrome.app.window.create "views/" + viewLoc, config, (win) ->
         callback win
 
-debugger
 if typeof define isnt "undefined"
     define [], ()->
         return openView

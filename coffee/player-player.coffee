@@ -11,6 +11,7 @@ define ['jquery',
             @$ = $("#js-player")
             @_ = @$[0]
             @cover = $("#js-cover")
+            @album = $("#js-album")
             @songName = $("#js-songName")
             @artist = $("#js-artist")
             @leftTime = $("#js-leftTime")
@@ -24,16 +25,6 @@ define ['jquery',
                 self.channel = new FMChannel(val.token, self.setting)
                 self.channel.loadList (list) ->
                     self.initList list
-                    self.single_channel = $(".js-channel")
-                    self.single_channel.bind "click", ->
-                        $this = $(@)
-                        self.channel_name = $this.text()
-                        self.setting.config.channel = $this.data("cid") + ""
-                        self.setting.saveConfig()
-                        self.restartPlay()
-    
-                        $(".nowplaying").remove()
-                        $this.append '<i class="nowplaying"></i>'
     
             @skip_button = $("#js-skip")
             @like_button = $("#js-love")
@@ -43,6 +34,8 @@ define ['jquery',
             
             @channel_panel = $("#js-channel-panel")
             @channel_list  = $("#js-channel-list")
+            @channel_search_form = $("#js-channel-search-form")
+            @channel_search_kw = $("#js-channel-search-kw")
     
             @setting_button = $("#js-setting")
             @setting_panel = $("#js-setting-panel")
@@ -50,7 +43,7 @@ define ['jquery',
             @share_content = $("#js-share-content")
             @share_cancel_button = $("#js-share-cancel")
             @share_submit_button = $("#js-share-submit")
-            
+
             @panels = $(".js-panel")
             @panel_down = false
     
@@ -154,6 +147,36 @@ define ['jquery',
                             self.blockSong true
                         else
                             self.playlist.blockSong song, (playlist) ->
+
+            @album.on "click", ->
+                if self.setting.config.albumdoubanmusic
+                    window.open "http://music.douban.com" + self.current.album
+
+            @channel_list.on "click", ".js-channel", ->
+                $this = $(@)
+                self.channel_name = $this.text()
+                self.setting.config.channel = $this.parent().data("cid") + ""
+                self.setting.saveConfig()
+                self.restartPlay()
+    
+                $(".nowplaying").remove()
+                $this.parent().append '<i class="nowplaying"></i>'
+            
+            @channel_search_form.on "submit", ->
+                kw = self.channel_search_kw.val()
+
+                if kw is ""
+                    self.channel.loadList (list) ->
+                        self.initList list
+                    return false
+
+                self.channel.search_channel kw, (list)-> 
+                    self.channel_list.children().slice(1).remove()
+
+                    _.each list.chls, (channel) ->
+                        self.channel_list.append(self.renderChannel channel)
+
+                return false
     
         resetPanel: ->
             @panel_down = false
@@ -323,21 +346,49 @@ define ['jquery',
                     self.sendNotification song, window.webkitURL.createObjectURL(@response)
     
             xhr.send()
-    
+
+        renderChannel: (channel) ->
+            if channel.id in [0, -3]
+                channel.name = channel.name + "兆赫"
+            else
+                channel.name = channel.name + " MHz"
+
+            if channel.collected is "true"
+                love = '<i class="star unstar js-unstar"></i>'
+            else if channel.collected is "false"
+                love = '<i class="star js-star"></i>'
+            else
+                love = ''
+            
+            if @setting.config.channel is channel.id + ""
+                @channel_name = channel.name
+                channel.name = channel.name + '<i class="nowplaying"></i>'
+
+            return '<li class="channel" data-cid="' + channel.id + '"><div class="channel-change clickable js-channel"></div>' + love + channel.name + '</li>'
+        
         initList: (list)->
+            self = this
+
+            @channel_list.children().slice(1).remove()
 
             _.each list.groups, (group)->
                 @channel_list.append '<li class="group-name">' + group.group_name + '</li>'
     
                 _.each group.chls, (channel)->
-                    if channel.id in [0, -3]
-                        channel.name = channel.name + "兆赫"
-                    else
-                        channel.name = channel.name + " MHz"
-                    
-                    if @setting.config.channel is channel.id + ""
-                        @channel_name = channel.name
-                        channel.name = channel.name + '<i class="nowplaying"></i>'
-                    @channel_list.append '<li class="channel clickable js-channel" data-cid="' + channel.id + '">' + channel.name + '</li>'
+                    @channel_list.append(@renderChannel channel) 
                 , @
             , @
+
+            @channel_list.on "click", ".js-star", ->
+                $this = $(this)
+                cid = $(this).parent().data("cid")
+                self.channel.collect_channel cid, ->
+                    $this.removeClass "js-star"
+                    $this.addClass "unstar js-unstar"
+
+            @channel_list.on "click", ".js-unstar", ->
+                $this = $(this)
+                cid = $(this).parent().data("cid")
+                self.channel.uncollect_channel cid, ->
+                    $this.removeClass "unstar js-unstar"
+                    $this.addClass "js-star"

@@ -603,6 +603,15 @@ body {
     text-shadow: 0px 1px white;
     line-height: 33px;
     padding: 0 20px;
+    position: relative;
+}
+
+.channel-list .channel .channel-change {
+    width: 250px;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    left: 46px;
 }
 
 .channel-list .channel .nowplaying {
@@ -611,6 +620,20 @@ body {
     width: 11px;
     margin: 11px 0;
     background: url('/img/nowplaying.gif');
+}
+
+.channel-list .channel .star {
+    float: left;
+    height: 16px;
+    width: 16px;
+    margin: 8px 0;
+    margin-right: 10px;
+    background-image: url('/img/icon2/star.svg');
+    background-size: 100% 100%;
+}
+
+.channel-list .channel .star.unstar {
+    background-image: url('/img/icon2/unstar.svg');
 }
 
 .setting-subsetting {
@@ -640,4 +663,27 @@ body {
 
 .setting-switch.switch-off {
     background-image: url('/img/icon2/Choose-off.png');
+}
+
+.channel.channel-search input {
+    width: 210px;
+    -webkit-box-sizing: border-box;
+    border: none;
+    background: none;
+    height: 33px;
+    outline: none;
+}
+
+.channel-search-button {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    background-image: url('/img/icon2/Search.svg');
+    background-size: 100% 100%;
+    border: none;
+    outline: none;
+    display: inline;
+    float: right;
+    cursor: pointer;
+    margin-top: 2px;
 }

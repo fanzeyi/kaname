@@ -17,7 +17,7 @@
             <div class="face front">
                 <div id="js-cover" class="cover-wrapper">
                 </div>
-                <div class="song-meta">
+                <div class="song-meta" id="js-album">
                     <span id="js-songName" class="song-name"></span>
                     <span id="js-leftTime" class="r song-lefttime"></span>
                     <span id="js-artist" class="artist"></span>
@@ -64,6 +64,13 @@
                     <div class="setting-name">桌面提醒</div>
                 </div>
                 <div id="js-notification-setting" class="setting-switch clickable">
+                </div>
+            </div>
+            <div class="setting-line">
+                <div class="setting-meta">
+                    <div class="setting-name">点击封面到豆瓣音乐</div>
+                </div>
+                <div id="js-album-douban-music" class="setting-switch clickable">
                 </div>
             </div>
             <div id="js-setting-lastfm-line" class="setting-line clickable">
@@ -149,6 +156,12 @@
         <div class="setting-title">Channels</div>
         <div class="setting-body setting-channel-body">
             <ul class="channel-list" id="js-channel-list">
+                <li class="channel channel-search">
+                    <form id="js-channel-search-form">
+                        <input type="input" name="channel-search-kw" id="js-channel-search-kw" placeholder="搜索频道..." />
+                        <button class="channel-search-button" type="submit"></button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
