@@ -1,0 +1,20 @@
+{
+  "name": "かなめ",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fanzeyi/kaname",
+  "authors": [
+    "Zeray Rice <fanzeyi1994@gmail.com>"
+  ],
+  "license": "GPLv3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "underscore": "~1.5.2"
+  }
+}
